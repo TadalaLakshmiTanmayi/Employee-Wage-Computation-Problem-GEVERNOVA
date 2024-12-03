@@ -11,6 +11,7 @@ public class Main {
             System.out.println("\nSelect an option:");
             System.out.println("1. Check Employee Presence");
             System.out.println("2. Calculate Daily Wage");
+            System.out.println("3. Calculate Part-Time Wage");
             System.out.print("Enter your choice: ");
             choice = scanner.nextInt();
             switch (choice) {
@@ -19,6 +20,9 @@ public class Main {
                     break;
                 case 2:
                     DailyWageCalculator.calculateDailyWage();
+                    break;
+                case 3:
+                    PartTimeWageCalculator.calculatePartTimeWage();
                     break;
                 default:
                     System.out.println("Invalid choice! Please select a valid option.");
