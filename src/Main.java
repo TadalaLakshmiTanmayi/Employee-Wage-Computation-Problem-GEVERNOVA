@@ -10,11 +10,15 @@ public class Main {
             // Display menu options
             System.out.println("\nSelect an option:");
             System.out.println("1. Check Employee Presence");
+            System.out.println("2. Calculate Daily Wage");
             System.out.print("Enter your choice: ");
             choice = scanner.nextInt();
             switch (choice) {
                 case 1:
                     EmployeePresence.checkPresence();
+                    break;
+                case 2:
+                    DailyWageCalculator.calculateDailyWage();
                     break;
                 default:
                     System.out.println("Invalid choice! Please select a valid option.");
