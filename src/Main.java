@@ -15,6 +15,7 @@ public class Main {
             System.out.println("4. Calculate Wage using Switch Case");
             System.out.println("5. Calculate Monthly Wage");
             System.out.println("6. Calculate Wages with Conditions");
+            System.out.println("7. Calculate Employee Wage");
             System.out.print("Enter your choice: ");
             choice = scanner.nextInt();
             switch (choice) {
@@ -35,6 +36,9 @@ public class Main {
                     break;
                 case 6:
                     ConditionWageCalculator.calculateConditionWage();
+                    break;
+                case 7:
+                    EmployeeWage.EmployeeWageCalculator();
                     break;
                 default:
                     System.out.println("Invalid choice! Please select a valid option.");
