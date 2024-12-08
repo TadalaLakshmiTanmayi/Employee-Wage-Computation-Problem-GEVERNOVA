@@ -58,10 +58,15 @@ public class Main {
     public static void computeEmployeeWageForMultipleCompanies(Scanner scanner) {
         System.out.println("Enter the number of companies:");
         int numberOfCompanies = scanner.nextInt();
-        for (int i = 1; i <= numberOfCompanies; i++) {
-            System.out.println("Enter details for Company " + i + ":");
+
+        // Create an EmpWageBuilder instance to manage multiple companies
+        EmpWageBuilder empWageBuilder = new EmpWageBuilder(numberOfCompanies);
+
+        // Take company details as input
+        for (int i = 0; i < numberOfCompanies; i++) {
+            System.out.println("Enter details for Company " + (i + 1) + ":");
             System.out.print("Enter Company Name: ");
-            scanner.nextLine();  // To consume the newline character
+            scanner.nextLine();  // Consume newline character
             String companyName = scanner.nextLine();
 
             System.out.print("Enter Wage Per Hour: ");
@@ -73,8 +78,11 @@ public class Main {
             System.out.print("Enter Maximum Working Hours per Month: ");
             int totalWorkingHrs = scanner.nextInt();
 
-            // Call the method to calculate employee wage for the company
-            EmployeeWage.calculateEmployeeWageForCompany(companyName, wagePerHr, workingDaysPerMonth, totalWorkingHrs);
+            // Add the company to EmpWageBuilder
+            empWageBuilder.addCompanyEmpWage(companyName, wagePerHr, workingDaysPerMonth, totalWorkingHrs);
         }
+
+        // Calculate and display wages for all companies
+        empWageBuilder.calculateWagesForAllCompanies();
     }
 }
