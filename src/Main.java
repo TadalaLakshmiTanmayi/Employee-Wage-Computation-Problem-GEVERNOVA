@@ -16,6 +16,7 @@ public class Main {
             System.out.println("5. Calculate Monthly Wage");
             System.out.println("6. Calculate Wages with Conditions");
             System.out.println("7. Calculate Employee Wage");
+            System.out.println("8. Compute Employee Wage for Multiple Companies");
             System.out.print("Enter your choice: ");
             choice = scanner.nextInt();
             switch (choice) {
@@ -40,6 +41,10 @@ public class Main {
                 case 7:
                     EmployeeWage.EmployeeWageCalculator();
                     break;
+                case 8:
+                    // UC8: Compute Employee Wage for Multiple Companies with user input
+                    computeEmployeeWageForMultipleCompanies(scanner);
+                    break;
                 default:
                     System.out.println("Invalid choice! Please select a valid option.");
                     break;
@@ -49,5 +54,27 @@ public class Main {
         } while (i!=0);
         System.out.println("Thank You");
         scanner.close();
+    }
+    public static void computeEmployeeWageForMultipleCompanies(Scanner scanner) {
+        System.out.println("Enter the number of companies:");
+        int numberOfCompanies = scanner.nextInt();
+        for (int i = 1; i <= numberOfCompanies; i++) {
+            System.out.println("Enter details for Company " + i + ":");
+            System.out.print("Enter Company Name: ");
+            scanner.nextLine();  // To consume the newline character
+            String companyName = scanner.nextLine();
+
+            System.out.print("Enter Wage Per Hour: ");
+            int wagePerHr = scanner.nextInt();
+
+            System.out.print("Enter Number of Working Days: ");
+            int workingDaysPerMonth = scanner.nextInt();
+
+            System.out.print("Enter Maximum Working Hours per Month: ");
+            int totalWorkingHrs = scanner.nextInt();
+
+            // Call the method to calculate employee wage for the company
+            EmployeeWage.calculateEmployeeWageForCompany(companyName, wagePerHr, workingDaysPerMonth, totalWorkingHrs);
+        }
     }
 }
