@@ -42,7 +42,7 @@ public class Main {
                     EmployeeWage.EmployeeWageCalculator();
                     break;
                 case 8:
-                    // UC8: Compute Employee Wage for Multiple Companies with user input
+                    // UC12: Compute Employee Wage for Multiple Companies with user input
                     computeEmployeeWageForMultipleCompanies(scanner);
                     break;
                 default:
@@ -61,13 +61,13 @@ public class Main {
         int numberOfCompanies = scanner.nextInt();
 
         // Create an EmpWageBuilder instance to manage multiple companies
-        IEmpWageBuilder empWageBuilder = new EmpWageBuilder(numberOfCompanies);
+        IEmpWageBuilder empWageBuilder = new EmpWageBuilder();
 
         // Take company details as input
         for (int i = 0; i < numberOfCompanies; i++) {
             System.out.println("Enter details for Company " + (i + 1) + ":");
             System.out.print("Enter Company Name: ");
-            scanner.nextLine();  // Consume newline character
+            scanner.nextLine();
             String companyName = scanner.nextLine();
 
             System.out.print("Enter Wage Per Hour: ");

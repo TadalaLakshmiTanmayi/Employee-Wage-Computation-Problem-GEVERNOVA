@@ -1,26 +1,25 @@
-public class EmpWageBuilder implements IEmpWageBuilder {
-    private CompanyEmpWage[] companyEmpWages;
-    private int numberOfCompanies;
-    private int companyIndex = 0;
+import java.util.ArrayList;
 
-    // Constructor to initialize the array to store company objects
-    public EmpWageBuilder(int numberOfCompanies) {
-        this.numberOfCompanies = numberOfCompanies;
-        companyEmpWages = new CompanyEmpWage[numberOfCompanies];
+public class EmpWageBuilder implements IEmpWageBuilder {
+    private ArrayList<CompanyEmpWage> companyEmpWages;  // Use ArrayList instead of array
+
+    // Constructor initializes the ArrayList
+    public EmpWageBuilder() {
+        companyEmpWages = new ArrayList<>();
     }
 
-    // Method to add company wage details to the array
+    // Method to add company wage details to the list
     @Override
     public void addCompanyEmpWage(String companyName, int wagePerHr, int workingDaysPerMonth, int totalWorkingHrs) {
-        companyEmpWages[companyIndex] = new CompanyEmpWage(companyName, wagePerHr, workingDaysPerMonth, totalWorkingHrs);
-        companyIndex++;
+        CompanyEmpWage companyEmpWage = new CompanyEmpWage(companyName, wagePerHr, workingDaysPerMonth, totalWorkingHrs);
+        companyEmpWages.add(companyEmpWage);
     }
 
     // Method to calculate the wage for all companies
     @Override
     public void calculateWagesForAllCompanies() {
-        for (int i = 0; i < numberOfCompanies; i++) {
-            companyEmpWages[i].calculateEmployeeWage();
+        for (CompanyEmpWage company : companyEmpWages) {
+            company.calculateEmployeeWage();
         }
     }
 }
