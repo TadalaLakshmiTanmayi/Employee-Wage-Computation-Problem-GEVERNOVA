@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 public class CompanyEmpWage {
@@ -6,6 +7,7 @@ public class CompanyEmpWage {
     private int workingDaysPerMonth;
     private int totalWorkingHrs;
     private int totalWage;
+    private ArrayList<Integer> dailyWages;  // To store daily wages for each working day
 
     // Constructor to initialize the company's details
     public CompanyEmpWage(String companyName, int wagePerHr, int workingDaysPerMonth, int totalWorkingHrs) {
@@ -14,6 +16,7 @@ public class CompanyEmpWage {
         this.workingDaysPerMonth = workingDaysPerMonth;
         this.totalWorkingHrs = totalWorkingHrs;
         this.totalWage = 0;
+        this.dailyWages = new ArrayList<>();  // Initialize the daily wages list
     }
 
     // Method to calculate wage for the company
@@ -48,14 +51,15 @@ public class CompanyEmpWage {
             totalEmployeeHrs += empHrs;
             totalWage += empWagePerDay;
 
-            // Display details for the day
-            System.out.println(companyName + " - Employee's Wage per Day: " + empWagePerDay);
-            System.out.println(companyName + " - Total Working Days: " + totalWorkingDays);
-            System.out.println(companyName + " - Total Working Hours: " + totalEmployeeHrs);
-            System.out.println(companyName + " - Total Wage So Far: " + totalWage);
+            // Store daily wage
+            dailyWages.add(empWagePerDay);
+
+            // Display daily wage
+            System.out.println(companyName + " - Day " + totalWorkingDays + ": Wage = " + empWagePerDay + ", Total Hours = " + totalEmployeeHrs + ", Total Wage = " + totalWage);
         }
 
-        // Final monthly wage
+        // Display all daily wages and final monthly wage
+        System.out.println("\nDaily Wages for " + companyName + ": " + dailyWages);
         System.out.println(companyName + " - Final Monthly Wage: " + totalWage);
     }
 
@@ -67,5 +71,10 @@ public class CompanyEmpWage {
     // Getter method for company name
     public String getCompanyName() {
         return companyName;
+    }
+
+    // Getter method for daily wages
+    public ArrayList<Integer> getDailyWages() {
+        return dailyWages;
     }
 }

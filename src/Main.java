@@ -42,7 +42,7 @@ public class Main {
                     EmployeeWage.EmployeeWageCalculator();
                     break;
                 case 8:
-                    // UC12: Compute Employee Wage for Multiple Companies with user input
+                    // UC13: Compute Employee Wage for Multiple Companies with daily wages
                     computeEmployeeWageForMultipleCompanies(scanner);
                     break;
                 default:
