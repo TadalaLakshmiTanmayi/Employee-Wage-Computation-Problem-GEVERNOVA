@@ -5,7 +5,7 @@ public class Main {
         System.out.println("Welcome to Employee Wage Computation Program on Master Branch");
         Scanner scanner = new Scanner(System.in);
         int choice;
-        int i =1;
+        int i = 1;
         do {
             // Display menu options
             System.out.println("\nSelect an option:");
@@ -51,16 +51,17 @@ public class Main {
             }
             System.out.println("Enter 0 to exit");
             i = scanner.nextInt();
-        } while (i!=0);
+        } while (i != 0);
         System.out.println("Thank You");
         scanner.close();
     }
+
     public static void computeEmployeeWageForMultipleCompanies(Scanner scanner) {
         System.out.println("Enter the number of companies:");
         int numberOfCompanies = scanner.nextInt();
 
         // Create an EmpWageBuilder instance to manage multiple companies
-        EmpWageBuilder empWageBuilder = new EmpWageBuilder(numberOfCompanies);
+        IEmpWageBuilder empWageBuilder = new EmpWageBuilder(numberOfCompanies);
 
         // Take company details as input
         for (int i = 0; i < numberOfCompanies; i++) {
