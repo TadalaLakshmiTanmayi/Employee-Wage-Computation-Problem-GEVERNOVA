@@ -6,6 +6,8 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         int choice;
         int i = 1;
+        EmpWageBuilder empWageBuilder = new EmpWageBuilder();  // Create an EmpWageBuilder instance
+
         do {
             // Display menu options
             System.out.println("\nSelect an option:");
@@ -17,6 +19,7 @@ public class Main {
             System.out.println("6. Calculate Wages with Conditions");
             System.out.println("7. Calculate Employee Wage");
             System.out.println("8. Compute Employee Wage for Multiple Companies");
+            System.out.println("9. Query Total Wage by Company");
             System.out.print("Enter your choice: ");
             choice = scanner.nextInt();
             switch (choice) {
@@ -42,8 +45,11 @@ public class Main {
                     EmployeeWage.EmployeeWageCalculator();
                     break;
                 case 8:
-                    // UC13: Compute Employee Wage for Multiple Companies with daily wages
-                    computeEmployeeWageForMultipleCompanies(scanner);
+                    computeEmployeeWageForMultipleCompanies(scanner, empWageBuilder);
+                    break;
+                case 9:
+                    // UC14: Query Total Wage by Company
+                    queryTotalWageByCompany(scanner, empWageBuilder);
                     break;
                 default:
                     System.out.println("Invalid choice! Please select a valid option.");
@@ -56,18 +62,15 @@ public class Main {
         scanner.close();
     }
 
-    public static void computeEmployeeWageForMultipleCompanies(Scanner scanner) {
+    public static void computeEmployeeWageForMultipleCompanies(Scanner scanner, EmpWageBuilder empWageBuilder) {
         System.out.println("Enter the number of companies:");
         int numberOfCompanies = scanner.nextInt();
-
-        // Create an EmpWageBuilder instance to manage multiple companies
-        IEmpWageBuilder empWageBuilder = new EmpWageBuilder();
 
         // Take company details as input
         for (int i = 0; i < numberOfCompanies; i++) {
             System.out.println("Enter details for Company " + (i + 1) + ":");
             System.out.print("Enter Company Name: ");
-            scanner.nextLine();
+            scanner.nextLine();  // Consume the leftover newline
             String companyName = scanner.nextLine();
 
             System.out.print("Enter Wage Per Hour: ");
@@ -85,5 +88,18 @@ public class Main {
 
         // Calculate and display wages for all companies
         empWageBuilder.calculateWagesForAllCompanies();
+    }
+
+    public static void queryTotalWageByCompany(Scanner scanner, EmpWageBuilder empWageBuilder) {
+        System.out.print("Enter the company name to query total wage: ");
+        scanner.nextLine();  // Consume the leftover newline
+        String companyName = scanner.nextLine();
+
+        int totalWage = empWageBuilder.getTotalWageByCompany(companyName);
+        if (totalWage != -1) {
+            System.out.println("Total wage for " + companyName + ": " + totalWage);
+        } else {
+            System.out.println("Company " + companyName + " not found.");
+        }
     }
 }

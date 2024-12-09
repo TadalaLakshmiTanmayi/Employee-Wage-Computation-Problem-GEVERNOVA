@@ -22,4 +22,14 @@ public class EmpWageBuilder implements IEmpWageBuilder {
             company.calculateEmployeeWage();
         }
     }
+
+    // Method to get the total wage by company name
+    public int getTotalWageByCompany(String companyName) {
+        for (CompanyEmpWage company : companyEmpWages) {
+            if (company.getCompanyName().equalsIgnoreCase(companyName)) {
+                return company.getTotalWage();
+            }
+        }
+        return -1;  // If company not found
+    }
 }
